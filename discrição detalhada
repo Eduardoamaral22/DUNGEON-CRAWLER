@@ -1,0 +1,79 @@
+# Dungeon Crawler em C
+
+Projeto desenvolvido para a disciplina do professor **Pedro Girotto**.
+
+## Sobre o jogo
+
+**Dungeon Crawler em C** é um jogo de exploração em terminal, desenvolvido usando matriz, estruturas condicionais, laços de repetição e funções.
+
+O jogador explora andares de uma dungeon, enfrentando monstros, quebrando caixas, pegando chaves, abrindo portas e tentando chegar ao final da fase.
+
+## Funcionalidades
+
+- Movimento com `W`, `A`, `S`, `D`
+- Sistema de vidas
+- Sistema de armas
+- Ataque com tecla `O`
+- Interação com tecla `I`
+- Portas e chaves
+- Botões que liberam passagens
+- Caixas quebráveis
+- Espinhos que causam dano
+- Monstros com movimentação
+- Boss final
+- Tela de vitória
+
+## Controles
+
+| Tecla | Ação |
+|---|---|
+| W | Mover para cima |
+| A | Mover para esquerda |
+| S | Mover para baixo |
+| D | Mover para direita |
+| O | Atacar |
+| I | Interagir |
+
+## Símbolos do mapa
+
+| Símbolo | Significado |
+|---|---|
+| `^ v < >` | Jogador |
+| `#` | Espinho |
+| `*` | Parede |
+| `k` | Caixa |
+| `D` | Porta fechada |
+| `=` | Porta aberta |
+| `@` | Chave |
+| `O` | Botão |
+| `X`, `Y` | Monstros |
+| `Z` | Boss |
+| `L` | Saída / objetivo |
+
+## Como executar
+
+1. Baixe o arquivo do projeto.
+2. Abra em uma IDE C, como Dev-C++, Code::Blocks ou VS Code.
+3. Compile o código.
+4. Execute o programa no terminal.
+
+> Observação: o jogo usa `getch()` e `system("cls")`, então funciona melhor no Windows.
+
+## Conceitos usados
+
+- Matrizes
+- Laços `while` e `for`
+- Condicionais `if` e `else`
+- Funções
+- Variáveis globais
+- Biblioteca `<conio.h>`
+- Biblioteca `<stdlib.h>`
+- Biblioteca `<time.h>`
+
+## Autor
+
+Desenvolvido por **Eduardo do Amaral** e *8Gabriel Fonseca**.
+
+## Professor
+
+**Pedro Girotto**
