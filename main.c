@@ -70,7 +70,7 @@ void terceiroandar(){
     int monstroYx = 19;
     int monstroYy = 12;
     int monstroYvivo = 1; // 1 = vivo, 0 = morto
-    int monstroYativo = 0; // começa a seguir após passar pela porta1
+    int monstroYativo = 0; // comeÃ§a a seguir apÃ³s passar pela porta1
 
     // Boss Z
     int bossZx = 0;
@@ -147,7 +147,7 @@ void terceiroandar(){
         mapa[20][14] = '#';
         mapa[20][15] = '#';
         mapa[20][16] = '#';
-        
+         mapa[0][24] = 'L';
 if(botao == 0){
     mapa[13][10] = 'D';
 }
@@ -155,7 +155,7 @@ else{
     mapa[13][10] = '=';
 }
 
-
+         mapa[0][24] = 'L';
         mapa[18][21] = '*';
         mapa[18][22] = '*';
         mapa[18][23] = '*';
@@ -174,7 +174,7 @@ else{
         mapa[13][13] = '*';
         mapa[13][12] = '*';
         mapa[13][11] = '*';
-        mapa[24][0] = 'L';
+        
         mapa[13][9] = '*';
         mapa[13][8] = '*';
         mapa[13][7] = '*';
@@ -355,7 +355,7 @@ else{
             mapa[20][14] = '#';
             mapa[20][15] = '#';
             mapa[20][16] = '#';
-            mapa[24][0] = 'L';
+            mapa[0][24] = 'L';
             mapa[18][21] = '*';
             mapa[18][22] = '*';
             mapa[18][23] = '*';
@@ -677,121 +677,67 @@ else{
 
 
         }
+if(movimento == 'w' || movimento == 'W'){
+    x--;
+    jogador = '^';
+}
+
+if(movimento == 's' || movimento == 'S'){
+    x++;
+    jogador = 'v';
+}
+
+if(movimento == 'a' || movimento == 'A'){
+    y--;
+    jogador = '<';
+}
+
+if(movimento == 'd' || movimento == 'D'){
+    y++;
+    jogador = '>';
+}
+if(x < 0){
+    x = 0;
+}
+if(x > 24){
+    x = 24;
+}
+if(y < 0){
+    y = 0;
+}
+if(y > 24){
+    y = 24;
+}
+
+// NÃO PASSAR POR PAREDE, PORTA FECHADA OU CAIXA
+if(mapa[x][y] == '*' || mapa[x][y] == 'D' || mapa[x][y] == 'k'){
+
+    if(jogador == '^'){
+        x++;
+    }
+    else if(jogador == 'v'){
+        x--;
+    }
+    else if(jogador == '<'){
+        y++;
+    }
+    else if(jogador == '>'){
+        y--;
+    }
+}
 
 
 
 
 
 
+        
 
+        
 
-        if(movimento == 'w' || movimento == 'W'){
-            if(x == 0) {
-                printf("Voce nao pode sair do mapa\n");
-                system("pause");
-                x++;
-            }
-            // Porta1 em [18][19]: bloqueia subida de [19][19]
-            if(x == 19 && y == 19) {
-                if(porta1 == 0) {
-                    printf("Voce precisar abrir a porta com uma chave para poder passar\n");
-                    system("pause");
-                    x++;
-                }
-            }
-            // Porta3 em [3][24]: bloqueia subida de [4][24]
-            
-            
+        
 
-            //PAREDES
-            if(mapa[21][11] == '^' || mapa[21][11] == 'v' || mapa[21][11] == '>' || mapa[21][11] == '<'){
-                x++;
-            }
-            if(mapa[19][24] == '^' || mapa[19][24] == 'v' || mapa[19][24] == '>' || mapa[19][24] == '<'){
-                x++;
-            }
-            if(mapa[19][23] == '^' || mapa[19][23] == 'v' || mapa[19][23] == '>' || mapa[19][23] == '<'){
-                x++;
-            }
-            if(mapa[19][22] == '^' || mapa[19][22] == 'v' || mapa[19][22] == '>' || mapa[19][22] == '<'){
-                x++;
-            }
-            if(mapa[19][21] == '^' || mapa[19][21] == 'v' || mapa[19][21] == '>' || mapa[19][21] == '<'){
-                x++;
-            }
-
-            
-
-
-            x--;
-            jogador = '^';
-        }
-
-        if(movimento == 'a' || movimento == 'A'){
-            if(y == 0) {
-                printf("Voce nao pode sair do mapa\n");
-                system("pause");
-                y++;
-            }
-            
-            y--;
-            jogador = '<';
-        }
-
-        if(movimento == 's' || movimento == 'S'){
-            if(x == 24) {
-                printf("Voce nao pode sair do mapa\n");
-                system("pause");
-                x--;
-            }
-            // Porta2 em [20][17]: bloqueia descida de [19][17]
-            if(x == 19 && y == 17) {
-                if(porta2 == 0) {
-                    printf("Voce precisar abrir a porta com uma chave para poder passar\n");
-                    system("pause");
-                    x--;
-                }
-            }
-
-            //PAREDES
-            if(mapa[17][24] == '^' || mapa[17][24] == 'v' || mapa[17][24] == '>' || mapa[17][24] == '<'){
-                x--;
-            }
-            if(mapa[17][23] == '^' || mapa[17][23] == 'v' || mapa[17][23] == '>' || mapa[17][23] == '<'){
-                x--;
-            }
-            if(mapa[17][22] == '^' || mapa[17][22] == 'v' || mapa[17][22] == '>' || mapa[17][22] == '<'){
-                x--;
-            }
-            if(mapa[17][21] == '^' || mapa[17][21] == 'v' || mapa[17][21] == '>' || mapa[17][21] == '<'){
-                x--;
-            }
-
-            // Parede linha 13: bloqueia descida (porta [13][10] so abre com botao)
-            if(x == 12) {
-                if(mapa[13][y] == '*') {
-                    x--;
-                } else if(mapa[13][y] == 'D') {
-                    printf("Voce precisar abrir a porta para poder passar\n");
-                    system("pause");
-                    x--;
-                }
-            }
-            
-            x++;
-            jogador = 'v';
-        }
-
-        if(movimento == 'd' || movimento == 'D'){
-            if(y == 24) {
-                printf("Voce nao pode sair do mapa\n");
-                system("pause");
-                y--;
-            }
-            
-            y++;
-            jogador = '>';
-        }
+        
         
 		if(x == 13 && y == 10) {
     if(botao == 0) {
@@ -1229,7 +1175,7 @@ void segundoandar() {
 		
 		
 		if(x == 12 && y == 1 ) {
-             printf("\naperte I para apertar o bot�o e ganhar uma chave\n");
+             printf("\naperte I para apertar o botï¿½o e ganhar uma chave\n");
         }
 		if(x == 3 && y == 0){
 			terceiroandar();
@@ -1265,9 +1211,9 @@ void segundoandar() {
         printf("\nW A S D para mover\n");
         movimento = getch();
  
-  //interagir com o primeiro bot�o
+  //interagir com o primeiro botï¿½o
     if(movimento == 'i' || movimento == 'I') {
-//interagir com o primeiro bot�o
+//interagir com o primeiro botï¿½o
     if(x == 12 && y == 1 && chave1 == 0) {
 
         chave1 = 1;
@@ -1652,15 +1598,9 @@ if(monstroX == x && monstroY == y) {
     printf("O monstro te atacou! Voce perdeu 1 vida.\n");
     system("pause");
 
-    if(vidas <= 0) {
-        printf("\nGAME OVER\n");
-        vidas = 3;
-        vila();
-        return;
-    }
+    
 
-    x = 14;
-    y = 14;
+    segundoandar();
     jogador = 'v';
 }
 	}
@@ -1679,6 +1619,28 @@ else if(direcaoMonstro2 == 2 && monstroy2 > 3) {
 else if(direcaoMonstro2 == 3 && monstroy2 < 8) {
     monstroy2++;
 }
+if(vidamonstro2 != 1){
+    if(monstrox2 == x && monstroy2 == y){
+
+        vidas--;
+
+        printf("O monstro te atacou! Voce perdeu 1 vida.\n");
+        system("pause");
+
+        if(vidas <= 0){
+            printf("\nGAME OVER\n");
+            system("pause");
+            main();
+            return;
+        }
+
+       segundoandar();
+        jogador = 'v';
+    }
+}
+
+
+
 if(mapa[x][y] == '#') {
     vidas--;
 
@@ -1781,9 +1743,7 @@ void primeiroandar()
         if(x == 0 && y == 2 && jogador == '<') {
             printf("\nAperte i para interagir\n");
         }
-if(x == 1 && y == 1 && jogador == '^') {
-    printf("\nAperte i para pegar a chave\n");
-}
+
      if(movimento == 'i')
 {
     if(x == 1 && y == 1 && jogador == '^')
@@ -1810,7 +1770,9 @@ if(x == 1 && y == 1 && jogador == '^') {
 
         movimento = getch();
 
-        
+        if(x == 1 && y == 1 && jogador == '^') {
+    printf("\nAperte i para pegar a chave\n");
+}
 
 
         if(movimento == 'i')  //BOTAO
@@ -1875,11 +1837,11 @@ if(mapa[x][y] == '#') {
 }
 
 
-if(mapa[x][y] == '*') {
+if(mapa[x][y] == '*' || mapa[x][y] == 'D') {
     printf("Voce bateu na parede!\n");
     system("pause");
 
-    // volta para a posi��o anterior
+    // volta para a posição anterior
     if(jogador == '^') x++;
     if(jogador == 'v') x--;
     if(jogador == '<') y++;
@@ -1932,11 +1894,11 @@ if(mapa[x][y] == '#') {
 }
 
 
-if(mapa[x][y] == '*') {
-    printf("Voce bateu na parede!\n");
+if(mapa[x][y] == '*' || mapa[x][y] == 'D') {
+    
     system("pause");
 
-    // volta para a posi��o anterior
+    // volta para a posição anterior
     if(jogador == '^') x++;
     if(jogador == 'v') x--;
     if(jogador == '<') y++;
@@ -1993,7 +1955,7 @@ if(mapa[x][y] == '*') {
     printf("Voce bateu na parede!\n");
     system("pause");
 
-    // volta para a posi��o anterior
+    // volta para a posição anterior
     if(jogador == '^') x++;
     if(jogador == 'v') x--;
     if(jogador == '<') y++;
@@ -2050,7 +2012,7 @@ if(mapa[x][y] == '*') {
     printf("Voce bateu na parede!\n");
     system("pause");
 
-    // volta para a posi��o anterior
+    // volta para a posição anterior
     if(jogador == '^') x++;
     if(jogador == 'v') x--;
     if(jogador == '<') y++;
@@ -2319,7 +2281,7 @@ if(arma == 3) {
     if(x-1 >= 0)
         mapa[x-1][y] = 'z';
 
-    if(x-1 >= 0 && y+1 <= 0)
+    if(x-1 >= 0 && y+1 < 10)
         mapa[x-1][y+1] = 'z';
 
     if(y-1 >= 0)
@@ -2590,7 +2552,7 @@ void vila() {
             printf("2: Arco e Flecha\n");
             printf("Ataca em linha reta, atingindo as 4 celulas consecutivas a frente do jogador.\n\n");
             printf("3: Cajado\n");
-            printf("Ataca todas as 8 células adjacentes ao jogador simultaneamente, independente da direção que ele estiver olhando\n\n");
+            printf("Ataca todas as 8 cÃ©lulas adjacentes ao jogador simultaneamente, independente da direÃ§Ã£o que ele estiver olhando\n\n");
             printf("Escolha sua arma para usar na dungeon: ");    
             scanf(" %d", &escolhaarma);
             }while(escolhaarma != 1 && escolhaarma != 2 && escolhaarma != 3);
@@ -2641,12 +2603,12 @@ void simbolos() {
     printf("v = Jogador olhando para baixo\n");
     printf("* = Parede: o jogador nao pode passar\n");
     printf("# = Espinho: o jogador morre ao passar por cima\n");
-    printf("k = Caixa: o jogador não pode passar, mas pode ser destruida com ataque\n");
+    printf("k = Caixa: o jogador nÃ£o pode passar, mas pode ser destruida com ataque\n");
     printf("O = Botao: executa uma acao ao ser pressionado\n");
-    printf("D = Porta fechada: o jogador não pode passar\n");
+    printf("D = Porta fechada: o jogador nÃ£o pode passar\n");
     printf("@ = Chave: abre uma porta fechada ao interagir\n");
     printf("= = Porta aberta: o jogador pode passar\n");
-    printf("L = Escada: leva o jogador para a próxima fase\n");
+    printf("L = Escada: leva o jogador para a prÃ³xima fase\n");
     printf("X = Monstro Tipo 1\n");
     printf("Y = Monstro Tipo 2\n");
     printf("Z = Boss Final\n\n");
@@ -2698,7 +2660,7 @@ int main() {
         vila();
     }
 
-        if(opcao == 2) {//FEITO, SÓ MELHORAR OS TEXTOS
+        if(opcao == 2) {//FEITO, SÃ? MELHORAR OS TEXTOS
 
         int escolhatutorial = 1;
 
@@ -2738,7 +2700,7 @@ int main() {
 
     }
 
-        if(opcao == 3) {//FEITO, SÓ MELHORAR OS TEXTOS
+        if(opcao == 3) {//FEITO, SÃ? MELHORAR OS TEXTOS
         printf("Jogo desenvolvido por:\n");
         printf("Gabriel Fonseca Pinto\n");
         printf("Eduardo Do Amaral Pinheiro\n");
